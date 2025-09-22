@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.GH_PAT }}
+          token: ${{ secrets.PAT_TOKEN }}
 
       # 2️⃣ Set up Python
       - name: Set up Python
