@@ -46,4 +46,4 @@ jobs:
           git add data/earthquakes.csv
           git commit -m "Weekly auto-update of earthquake data" || echo "No changes to commit"
           git pull --rebase origin main
-          git push origin HEAD:main
+          git push --force origin HEAD:main
