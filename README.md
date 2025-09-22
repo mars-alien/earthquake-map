@@ -1,108 +1,105 @@
-Earthquake Map Auto-Updater
+# 🌍 Interactive Earthquake Map
 
-An interactive earthquake visualization dashboard that automatically updates with the latest real-time earthquake data from USGS.
-Built with Python, Pandas, Folium, Streamlit, and GitHub Actions, this project combines data engineering, visualization, and automation to create a powerful geo-analytics tool.
+An interactive web application built with **Streamlit**, **Folium**, and the **USGS Earthquake API**.  
+This project visualizes recent earthquakes worldwide, allowing users to **filter by magnitude** and **search locations**, with dynamic clustering on a map.  
 
-🔗 Live Demo
- |
-💻 Source Code
+---
 
-✨ Features
+## 📸 Screenshots
 
-📡 Real-Time Data Updates – Earthquake data auto-fetched and refreshed daily via GitHub Actions.
+### Filters + Map
+![Earthquake Map](./assets/screenshot.png)
 
-🗺️ Interactive World Map – Explore earthquakes on an interactive Leaflet map powered by Folium.
+---
 
-🎚️ Smart Filters – Filter by minimum magnitude or location for custom insights.
+## ✨ Features
 
-📊 Clustered Visualization – Earthquakes grouped by region and intensity, with intuitive color-coding.
+- ✅ **Real-time Data** – Fetches earthquake data directly from [USGS Earthquake API](https://earthquake.usgs.gov/).
+- ✅ **Interactive Map** – Explore earthquakes on a Folium map with zoom & pan.
+- ✅ **Magnitude Filters** – Adjust minimum magnitude dynamically.
+- ✅ **Search by Location** – Quickly locate earthquakes near a place.
+- ✅ **Marker Clustering** – Group nearby earthquakes for better visualization.
+- ✅ **CSV Export** – Download filtered earthquake data for offline use.
+- ✅ **Deployment Ready** – Works locally and deploys smoothly on Streamlit Cloud.
 
-📥 CSV Export – Download filtered earthquake datasets for further analysis.
+---
 
-🌙 Modern UI/UX – Clean, dark-themed dashboard built with Streamlit for smooth user interaction.
+## 📂 Project Structure
 
-🛠️ Tech Stack
+earthquake-map/
+├── assets/ # Images/screenshots for README
+│ └── screenshot.png
+├── data/ # Stores earthquake CSV fetched from USGS
+│ └── earthquakes.csv
+├── outputs/ # Stores generated map HTML
+│ └── earthquakes_map.html
+├── src/
+│ ├── app.py # Main Streamlit application
+│ ├── fetch_data.py # Fetches data from USGS API
+│ ├── generate_map.py # Generates standalone HTML map
+│ └── process_data.py # Cleans and preprocesses earthquake data
+├── requirements.txt # Python dependencies
+├── .gitignore
+└── README.md
 
-Languages: Python
 
-Libraries: Pandas, Folium, Streamlit
+---
 
-Automation: GitHub Actions (auto-updates data pipeline)
+## ⚡ Quick Start
 
-Visualization: Leaflet (via Folium), Streamlit components
-
-Deployment: Streamlit Cloud
-
-💡 These tools are highly relevant for Data Science & Software Engineering internships, showcasing skills in:
-
-Data Processing (Pandas, APIs)
-
-Automation/CI-CD (GitHub Actions)
-
-Interactive Dashboards (Streamlit, Folium)
-
-Geospatial Visualization (Leaflet, Clustering)
-
-📸 Screenshots
-🔎 Filters + Map
-
-📊 Interactive Clusters
-
-(Include another screenshot focusing on zoomed-in clusters)
-
-⚙️ Installation & Usage
-
-Clone repository
-
-git clone https://github.com/mars-alien/react-portfolio.git
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/your-username/earthquake-map.git
 cd earthquake-map
-
-
-Create virtual environment
-
-python -m venv venv
-source venv/bin/activate   # Mac/Linux
-venv\Scripts\activate      # Windows
-
-
-Install dependencies
-
+2️⃣ Install dependencies
 pip install -r requirements.txt
 
+3️⃣ Fetch latest earthquake data
+python src/fetch_data.py
 
-Run the app
-
+4️⃣ Run the Streamlit app
 streamlit run src/app.py
 
+🔧 Configuration
 
-Open http://localhost:8501 in your browser 🚀
+Data Source: USGS "All Earthquakes, Past 7 Days" feed
+→ CSV Feed Link
 
-🔄 Automated Data Updates
+Output Files:
 
-This project uses GitHub Actions to:
+data/earthquakes.csv → raw data
 
-Fetch latest earthquake data from USGS API daily
+outputs/earthquakes_map.html → static map export
 
-Clean and preprocess data with Pandas
+📦 Deployment
 
-Push updates to GitHub repository
+This project is ready to deploy on:
 
-Automatically refresh the Streamlit app
+Streamlit Cloud (1-click deploy)
 
-This ensures the map always shows the most recent earthquake activity worldwide 🌍
+Heroku / Render (with requirements.txt)
 
-📂 Project Structure
-earthquake-map/
-│
-├── src/
-│   ├── app.py              # Main Streamlit app
-│   ├── process_data.py     # Data loading & cleaning
-│   ├── visualize.py        # Folium map generation
-│
-├── .github/
-│   └── workflows/
-│       └── update-data.yml # GitHub Actions automation
-│
-├── requirements.txt
-├── README.md
-└── assets/ (screenshots)
+Docker (optional: build a container for deployment)
+
+Example for Streamlit Cloud:
+
+Push repo to GitHub
+
+Go to Streamlit Cloud
+
+Create new app → point to src/app.py
+
+🤝 Contributing
+
+Pull requests are welcome!
+If you’d like to contribute, please fork the repo and create a new branch:
+
+git checkout -b feature/new-feature
+git commit -m "Added new feature"
+git push origin feature/new-feature
+
+📜 License
+
+This project is licensed under the MIT License – feel free to use, modify, and distribute.
+
+
