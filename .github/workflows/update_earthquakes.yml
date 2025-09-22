@@ -1,0 +1,49 @@
+name: Weekly Earthquake Data Update
+
+# Run every Sunday at 02:00 UTC, or manually
+on:
+  schedule:
+    - cron: '0 2 * * 0'
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository with write access
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Step 2: Setup Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Step 4: Ensure data folder exists
+      - name: Ensure data folder exists
+        run: mkdir -p data
+
+      # Step 5: Fetch latest earthquake data
+      - name: Fetch latest earthquake data
+        run: python src/fetch_data.py
+
+      # Step 6: Generate interactive map
+      - name: Generate HTML map
+        run: python src/generate_map.py
+
+      # Step 7: Commit and push updates
+      - name: Commit and push updates
+        run: |
+          git add data/earthquakes.csv data/earthquakes_map.html
+          git commit -m "Weekly auto-update of earthquake data" || echo "No changes to commit"
+          git push
