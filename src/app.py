@@ -1,36 +1,34 @@
-# src/app.py
-
 import streamlit as st
 from streamlit_folium import st_folium
+from process_data import load_and_clean_data
 import folium
 from folium.plugins import MarkerCluster
-from process_data import load_and_clean_data
-from generate_map import get_color
 
-st.set_page_config(page_title="🌍 Earthquake Map", layout="wide")
-st.title("🌍 Interactive Earthquake Map")
-st.markdown("Real-time earthquake data from the **USGS API** (past 7 days).")
-
-df = load_and_clean_data()
+# Function to get marker color by magnitude
+def get_color(magnitude):
+    if magnitude < 4.0:
+        return "green"
+    elif 4.0 <= magnitude < 6.0:
+        return "orange"
+    else:
+        return "red"
 
 # Sidebar filters
-st.sidebar.header("🔎 Filters")
-min_mag = st.sidebar.slider(
-    "Minimum Magnitude",
-    min_value=float(df["magnitude"].min()),
-    max_value=float(df["magnitude"].max()),
-    value=2.5,
-    step=0.1
-)
-region_keyword = st.sidebar.text_input("Filter by Location Keyword", "")
+st.sidebar.header("Filters")
+min_magnitude = st.sidebar.slider("Minimum Magnitude", min_value=0.0, max_value=10.0, value=0.0, step=0.1)
+search_location = st.sidebar.text_input("Search Location")
 
-# Filter data
-filtered_df = df[df["magnitude"] >= min_mag]
-if region_keyword:
-    filtered_df = filtered_df[filtered_df["place"].str.contains(region_keyword, case=False, na=False)]
-st.sidebar.markdown(f"**Showing {len(filtered_df)} earthquakes**")
+# Load and filter data
+df = load_and_clean_data()
+filtered_df = df[df["magnitude"] >= min_magnitude]
 
-# Folium map
+if search_location:
+    filtered_df = filtered_df[filtered_df["place"].str.contains(search_location, case=False, na=False)]
+
+st.title("🌍 Interactive Earthquake Map")
+st.write(f"Showing {len(filtered_df)} earthquakes")
+
+# Create Folium map dynamically
 earthquake_map = folium.Map(location=[20, 0], zoom_start=2, tiles="cartodbpositron")
 marker_cluster = MarkerCluster().add_to(earthquake_map)
 
@@ -51,12 +49,13 @@ for _, row in filtered_df.iterrows():
         )
     ).add_to(marker_cluster)
 
-st_folium(earthquake_map, width=1200, height=600)
+# Display map in Streamlit
+st_folium(earthquake_map, width=1000, height=600)
 
-# CSV download
-st.download_button(
-    label="📥 Download Filtered Data (CSV)",
-    data=filtered_df.to_csv(index=False).encode("utf-8"),
+# Optionally: allow CSV download
+st.sidebar.download_button(
+    label="Download filtered CSV",
+    data=filtered_df.to_csv(index=False).encode('utf-8'),
     file_name="filtered_earthquakes.csv",
     mime="text/csv"
 )

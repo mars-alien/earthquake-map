@@ -5,8 +5,11 @@ from process_data import load_and_clean_data
 
 # Paths
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUTPUT_HTML = os.path.join(BASE_DIR, "data", "earthquakes_map.html")
+OUTPUT_DIR = os.path.join(BASE_DIR, "outputs")   # New folder outside repo for HTML
+os.makedirs(OUTPUT_DIR, exist_ok=True)          # Ensure folder exists
+OUTPUT_HTML = os.path.join(OUTPUT_DIR, "earthquakes_map.html")
 
+# Function to get color by magnitude
 def get_color(magnitude):
     if magnitude < 4.0:
         return "green"
@@ -15,6 +18,7 @@ def get_color(magnitude):
     else:
         return "red"
 
+# Create the map
 def create_map():
     df = load_and_clean_data()
 

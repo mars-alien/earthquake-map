@@ -1,21 +1,14 @@
 # Python
 __pycache__/
-*.py[cod]
+*.pyc
 *.pyo
 *.pyd
-*.pyc
-*.sqlite3
-
-# Virtual environment
 venv/
-env/
-*.egg-info/
 
-# IDE / Editor
-.vscode/
-
+# Data & outputs
+outputs/
+data/earthquakes_map.html
 
 # OS files
 .DS_Store
 Thumbs.db
-
