@@ -5,11 +5,6 @@ This project visualizes recent earthquakes worldwide, allowing users to **filter
 
 ---
 
-## 📸 Screenshots
-
-### Filters + Map
-![Earthquake Map](./assets/screenshot.png)
-
 ---
 
 ## ✨ Features
@@ -27,20 +22,15 @@ This project visualizes recent earthquakes worldwide, allowing users to **filter
 ## 📂 Project Structure
 
 earthquake-map/
-│
-├── src/
-│   ├── app.py              # Main Streamlit app
-│   ├── process_data.py     # Data loading & cleaning
-│   ├── generate_map.py        # Folium map generation
-|   ├── fetch_data.py    # Fetch the data
-│
-├── .github/
-│   └── workflows/
-│       └── update-data.yml # GitHub Actions automation
-│
-├── requirements.txt
-├── README.md
-
+├── .github/                      # GitHub repository configuration
+│   └── workflows/                # Workflows for GitHub Actions
+│       └── update-data.yml       # Automates data fetching and processing
+├── src/                          # Source code for the application
+│   ├── app.py                    # Main Streamlit web application
+│   ├── process_data.py           # Handles data loading and cleaning
+│   └── generate_map.py           # Creates the Folium map
+├── requirements.txt              # List of Python dependencies
+└── README.md                     # Project documentation (this file)
 
 
 
