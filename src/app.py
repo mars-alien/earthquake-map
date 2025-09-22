@@ -24,7 +24,7 @@ filtered_df = df[df["magnitude"] >= min_magnitude]
 if search_location:
     filtered_df = filtered_df[filtered_df["place"].str.contains(search_location, case=False, na=False)]
 
-st.title("🌍 Interactive Earthquake Map")
+st.title("Interactive Earthquake Map")
 st.write(f"Showing {len(filtered_df)} earthquakes")
 
 # Create Folium map dynamically
