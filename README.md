@@ -27,20 +27,21 @@ This project visualizes recent earthquakes worldwide, allowing users to **filter
 ## 📂 Project Structure
 
 earthquake-map/
-├── assets/ # Images/screenshots for README
-│ └── screenshot.png
-├── data/ # Stores earthquake CSV fetched from USGS
-│ └── earthquakes.csv
-├── outputs/ # Stores generated map HTML
-│ └── earthquakes_map.html
+│
 ├── src/
-│ ├── app.py # Main Streamlit application
-│ ├── fetch_data.py # Fetches data from USGS API
-│ ├── generate_map.py # Generates standalone HTML map
-│ └── process_data.py # Cleans and preprocesses earthquake data
-├── requirements.txt # Python dependencies
-├── .gitignore
-└── README.md
+│   ├── app.py              # Main Streamlit app
+│   ├── process_data.py     # Data loading & cleaning
+│   ├── generate_map.py        # Folium map generation
+|   ├── fetch_data.py    # Fetch the data
+│
+├── .github/
+│   └── workflows/
+│       └── update-data.yml # GitHub Actions automation
+│
+├── requirements.txt
+├── README.md
+
+
 
 
 ---
