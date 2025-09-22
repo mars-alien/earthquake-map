@@ -22,6 +22,7 @@ This project visualizes recent earthquakes worldwide, allowing users to **filter
 ## 📂 Project Structure
 
 earthquake-map/
+
 ├── .github/                      # GitHub repository configuration
 │   └── workflows/                # Workflows for GitHub Actions
 │       └── update-data.yml       # Automates data fetching and processing
