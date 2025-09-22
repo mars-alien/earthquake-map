@@ -39,9 +39,11 @@ jobs:
 
       # 6️⃣ Commit and push CSV only, set temporary git identity
       - name: Commit and push updates
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/earthquakes.csv
           git commit -m "Weekly auto-update of earthquake data" || echo "No changes to commit"
-          git push origin HEAD:main
+          git push https://x-access-token:${PAT_TOKEN}@github.com/mars-alien/earthquake-map.git HEAD:main
