@@ -1,9 +1,8 @@
 name: Weekly Earthquake Data Update
 
-# Schedule: every Sunday at 02:00 UTC, also manual trigger
 on:
   schedule:
-    - cron: '0 2 * * 0'  # Sunday 02:00 UTC
+    - cron: '0 2 * * 0'
   workflow_dispatch:
 
 jobs:
@@ -11,37 +10,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repository with write permissions
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # allows git push without auth errors
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      # 2️⃣ Set up Python environment
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # 4️⃣ Ensure data folder exists
-      - name: Ensure data folder
+      - name: Ensure data folder exists
         run: mkdir -p data
 
-      # 5️⃣ Fetch latest earthquake CSV
-      - name: Fetch earthquake data
+      - name: Fetch latest earthquake data
         run: python src/fetch_data.py
 
-      # 6️⃣ Optional: generate map locally (not required if Streamlit loads dynamically)
-      # - name: Generate map
-      #   run: python src/generate_map.py
-
-      # 7️⃣ Commit and push updates
       - name: Commit and push updates
         run: |
           git add data/earthquakes.csv
