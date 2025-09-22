@@ -1,37 +1,13 @@
-# 🌍 Interactive Earthquake Map
+# 🌍 Earthquake Map Project
 
-An interactive web application built with **Streamlit**, **Folium**, and the **USGS Earthquake API**.  
-This project visualizes recent earthquakes worldwide, allowing users to **filter by magnitude** and **search locations**, with dynamic clustering on a map.  
-
----
+An interactive web application that visualizes real-time earthquake data on a map, built with **Python**, **Streamlit**, and **Folium**.
 
 ---
 
-## ✨ Features
-
-- ✅ **Real-time Data** – Fetches earthquake data directly from [USGS Earthquake API](https://earthquake.usgs.gov/).
-- ✅ **Interactive Map** – Explore earthquakes on a Folium map with zoom & pan.
-- ✅ **Magnitude Filters** – Adjust minimum magnitude dynamically.
-- ✅ **Search by Location** – Quickly locate earthquakes near a place.
-- ✅ **Marker Clustering** – Group nearby earthquakes for better visualization.
-- ✅ **CSV Export** – Download filtered earthquake data for offline use.
-- ✅ **Deployment Ready** – Works locally and deploys smoothly on Streamlit Cloud.
-
----
-
-## 📂 Project Structure
-
-earthquake-map/
-├── .github/                      # GitHub repository configuration
-│   └── workflows/                # Workflows for GitHub Actions
-│       └── update-data.yml       # Automates data fetching and processing
-├── src/                          # Source code for the application
-│   ├── app.py                    # Main Streamlit web application
-│   ├── process_data.py           # Handles data loading and cleaning
-│   └── generate_map.py           # Creates the Folium map
-├── requirements.txt              # Python dependencies list
-└── README.md                     # Project documentation (this file)
-
+### ✨ Features
+* **Interactive Map**: Explore recent earthquake data with zoom and pan functionality.
+* **Automated Data Updates**: The application automatically fetches and processes the latest data using GitHub Actions.
+* **User-Friendly Interface**: A simple and clean web interface for easy data exploration.
 
 
 ---
