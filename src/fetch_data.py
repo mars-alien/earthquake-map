@@ -8,8 +8,8 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 os.makedirs(DATA_DIR, exist_ok=True)
 CSV_PATH = os.path.join(DATA_DIR, "earthquakes.csv")
 
-# USGS API for past 7 days
-URL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.csv"
+# USGS API for past 24 hours
+URL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.csv"
 
 def fetch_earthquake_data():
     r = requests.get(URL)
