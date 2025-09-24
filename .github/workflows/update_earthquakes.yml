@@ -1,9 +1,9 @@
-name: Weekly Earthquake Data Update
+name: Auto Earthquake Data Update (Every 6 Hours)
 
 # Run every Sunday 02:00 UTC and manually
 on:
   schedule:
-    - cron: '0 2 * * 0'
+    - cron: "0 */6 * * *"
   workflow_dispatch:
 
 jobs:
